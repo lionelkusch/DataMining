@@ -20,6 +20,7 @@ public class Jabeja {
   private float T;
   private boolean resultFileCreated = false;
 
+
   //-------------------------------------------------------------------
   public Jabeja(HashMap<Integer, Node> graph, Config config) {
     this.entireGraph = graph;
@@ -50,10 +51,21 @@ public class Jabeja {
    */
   private void saCoolDown(){
     // TODO for second task
-    if (T > 1)
-      T -= config.getDelta();
-    if (T < 1)
-      T = 1;
+	  //task 1
+//	  if (T > 1)
+//    	T -= config.getDelta();
+//    if (T < 1)
+//      T = 1;
+	  T *=config.getDelta();
+  }
+  /**
+   * Acceptance probability function
+   * @param old_cost 
+   * @param new_cost
+   * @return
+   */
+  private double acceptance_probability(int old_cost, int new_cost){
+	  return Math.exp(((new_cost-old_cost)/this.T));
   }
 
   /**
@@ -100,7 +112,11 @@ public class Jabeja {
 		int dpq = this.getDegree(nodep, nodeq.getColor());
 		int dqp = this.getDegree(nodeq, nodep.getColor());
 		int newScore = (int) (Math.pow(dpq,alpha)+Math.pow(dqp,alpha));
-		if ((newScore*T>oldScore)&&(newScore>highestBenefit)){
+		//task 1
+		//if ((newScore*T>oldScore)&&(newScore>highestBenefit)){
+		//task 2
+		double ap = acceptance_probability(oldScore, newScore);
+		if ((ap > RandNoGenerator.nextFloat())&&(newScore>highestBenefit)){
 			bestPartner=nodeq;
 			highestBenefit = newScore;
 		}
