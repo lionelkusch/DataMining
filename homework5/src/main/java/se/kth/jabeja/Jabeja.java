@@ -56,7 +56,13 @@ public class Jabeja {
 //    	T -= config.getDelta();
 //    if (T < 1)
 //      T = 1;
-	  T *=config.getDelta();
+//	  if (round%10 ==0){
+		  T *=config.getDelta();
+//	  }
+	  System.out.println("T :"+T);
+//	  if (round == 400){
+//		  T=2;
+//	  }
   }
   /**
    * Acceptance probability function
@@ -65,6 +71,9 @@ public class Jabeja {
    * @return
    */
   private double acceptance_probability(int old_cost, int new_cost){
+//	  if (old_cost == new_cost){
+//		  return 0.5;
+//	  } 
 	  return Math.exp(((new_cost-old_cost)/this.T));
   }
 
@@ -113,7 +122,7 @@ public class Jabeja {
 		int dqp = this.getDegree(nodeq, nodep.getColor());
 		int newScore = (int) (Math.pow(dpq,alpha)+Math.pow(dqp,alpha));
 		//task 1
-		//if ((newScore*T>oldScore)&&(newScore>highestBenefit)){
+//		if ((newScore*T>oldScore)&&(newScore>highestBenefit)){
 		//task 2
 		double ap = acceptance_probability(oldScore, newScore);
 		if ((ap > RandNoGenerator.nextFloat())&&(newScore>highestBenefit)){
