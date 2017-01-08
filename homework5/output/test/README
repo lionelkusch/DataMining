@@ -1,0 +1,5 @@
+task2.1&2.2 : use the algorithme of task 2.2 and the idea to put the temperature to 1 from range 500
+task2.1_less_swap_same_value : put a probability to 0.5 to swap when there the same cost
+task2.1_not_swap_same_value : not accept to swap when there the same value
+task2.2_parameter_different : temperature 2 and delta 0.003
+
